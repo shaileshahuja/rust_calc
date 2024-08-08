@@ -13,7 +13,7 @@ async fn main() {
         .merge(api::routes())
         .layer(cors);
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3001));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 3001));
     println!("Server listening on {}", addr);
     axum::Server::bind(&addr)
         .serve(app.into_make_service())

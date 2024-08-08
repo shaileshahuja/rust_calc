@@ -27,8 +27,9 @@ struct ReverseResponse {
 }
 
 pub fn routes() -> Router {
-    Router::new().route("/calculate", post(calculate))
-    Router::new().route("/reverse", post(reverse))
+    Router::new()
+        .route("/calculate", post(calculate))
+        .route("/reverse", post(reverse))
 }
 
 async fn calculate(Json(payload): Json<CalculateRequest>) -> (StatusCode, Json<CalculateResponse>) {
@@ -39,5 +40,5 @@ async fn calculate(Json(payload): Json<CalculateRequest>) -> (StatusCode, Json<C
 }
 
 async fn reverse(Json(payload): Json<ReverseRequest>) -> (StatusCode, Json<ReverseResponse>) {
-    return (StatusCode::OK, Json(ReverseResponse { result: payload.expression.chars().rev().collect() }));
+    (StatusCode::OK, Json(ReverseResponse { result: payload.expression.chars().rev().collect() }))
 }
